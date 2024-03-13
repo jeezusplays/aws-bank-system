@@ -5,7 +5,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/jeezusplays/README-template">
+  <a href="https://github.com/jeezusplays/aws-bank-system">
     <img src="logo/logo.png" alt="Logo" width="100" height="100">
   </a>
 
@@ -14,14 +14,14 @@
   <p align="center">
     Easy to Use README Template for all your projects!
     <br />
-    <a href="https://github.com/jeezusplays/README-template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/jeezusplays/aws-bank-system"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/jeezusplays/README-template">View Demo</a>
+    <a href="https://github.com/jeezusplays/aws-bank-system">View Demo</a>
     ·
-    <a href="https://github.com/jeezusplays/README-template/issues">Report Bug</a>
+    <a href="https://github.com/jeezusplays/aws-bank-system/issues">Report Bug</a>
     ·
-    <a href="https://github.com/jeezusplays/README-template/issues">Request Feature</a>
+    <a href="https://github.com/jeezusplays/aws-bank-system/issues">Request Feature</a>
   </p>
 </div>
 
@@ -96,11 +96,11 @@ _Examples of prerequisites_
 ### Installation
 1. Clone the repo
    ```sh
-   git clone https://github.com/jeezusplays/README-Template
+   git clone https://github.com/jeezusplays/aws-bank-system
     ```
 2. Navigate to the project directory.
     ```sh
-    cd README-Template
+    cd aws-bank-system
     ```
 3. Install NPM packages (if applicable)
    ```sh
@@ -133,7 +133,7 @@ If you have a suggestion that would make this better, please fork the repo and c
 5. Open a Pull Request
 
 ## License
-Distributed under the MIT License. See [`LICENSE`](https://github.com/jeezusplays/README-Template/blob/main/LICENSE) for more information.
+Distributed under the MIT License. See [`LICENSE`](https://github.com/jeezusplays/aws-bank-system/blob/main/LICENSE) for more information.
 
 ## Contact
 Feel free to contact and connect!
@@ -155,9 +155,9 @@ Examples:
 * [Github Profile Badges](https://home.aveek.io/GitHub-Profile-Badges/)
 
 
-[forks-shield]: https://img.shields.io/github/forks/jeezusplays/README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/jeezusplays/README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/jeezusplays/README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/jeezusplays/README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/jeezusplays/README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/jeezusplays/README-Template/issues
+[forks-shield]: https://img.shields.io/github/forks/jeezusplays/aws-bank-system.svg?style=for-the-badge
+[forks-url]: https://github.com/jeezusplays/aws-bank-system/network/members
+[stars-shield]: https://img.shields.io/github/stars/jeezusplays/aws-bank-system.svg?style=for-the-badge
+[stars-url]: https://github.com/jeezusplays/aws-bank-system/stargazers
+[issues-shield]: https://img.shields.io/github/issues/jeezusplays/aws-bank-system.svg?style=for-the-badge
+[issues-url]: https://github.com/jeezusplays/aws-bank-system/issues
