@@ -9,10 +9,10 @@
     <img src="logo/logo.png" alt="Logo" width="100" height="100">
   </a>
 
-<h3 align="center">README Template</h3>
+<h3 align="center">DigiFin Banking</h3>
 
   <p align="center">
-    Easy to Use README Template for all your projects!
+    Online Banking System
     <br />
     <a href="https://github.com/jeezusplays/aws-bank-system"><strong>Explore the docs »</strong></a>
     <br />
@@ -27,63 +27,16 @@
 
 
 ## About The Project
-As a frequent contributor to my GitHub repository, I've often struggled with finding the perfect README template that suits my needs. After hours of scouring through various templates, I've decided to take matters into my own hands and create my very own README template. My aim is to create a comprehensive yet concise guide that outlines all the necessary information regarding my projects, including: 
-* Installation instructions
-* Usage examples
-* Contribution guidelines 
-
-This template will streamline the process of creating README files and provide value to other developers who are looking for a similar solution. I'm excited to share my template with the community and hope that it will make the process of creating README files a lot easier for others. Please give this project a :star2: star :star2: if you find it useful!
-
-Use the `BLANK_README.md` (_in progress_) to get started!
+Digifin is a cloud-based digital bank that has recently been granted an online banking license. Over the next five years, they plan to launch their services. Based in Singapore, their target users are expected to number around 100,000 in the first year following their launch. Despite being a small team, Digifin comprises seasoned financial experts and tech enthusiasts, indicating a strong foundation for their venture into the digital banking sector.
 
 ## Built With
 ### Major Frameworks / Libraries 
-_Examples of Major Frameworks and Libraries_
 
 #### Front-end frameworks and libraries
-1. React - A JavaScript library for building user interfaces.
-2. Angular - A TypeScript-based web application framework.
-3. Vue.js - A progressive JavaScript framework for building user interfaces.
-4. Bootstrap - A popular CSS framework for building responsive websites.
-5. Material UI - A React component library implementing Google's Material Design.
-
-#### Back-end frameworks and libraries
-1. Express - A popular Node.js framework for building web applications.
-2. Django - A Python web framework for building high-level, robust web applications.
-3. Ruby on Rails - A Ruby-based web application framework that follows the Model-View-Controller (MVC) architecture pattern.
-4. Flask - A Python web framework that emphasizes simplicity and flexibility.
-5. Spring - A Java-based framework for building enterprise-level applications.
-
-#### Data science and machine learning frameworks and libraries
-1. TensorFlow - A popular open-source library for machine learning developed by Google.
-2. PyTorch - An open-source machine learning framework developed by Facebook's AI Research team.
-3. scikit-learn - A Python library for machine learning and data mining.
-4. Pandas - A Python library for data manipulation and analysis.
-5. NumPy - A Python library for numerical computing and data analysis.
-
-#### Other commonly used frameworks and libraries
-1. jQuery - A JavaScript library for simplifying client-side scripting and HTML document manipulation.
-2. Flask RESTful - A Flask extension for building RESTful APIs.
-3. FastAPI - A modern, fast (high-performance) web framework for building APIs with Python 3.7+.
-4. Jest - A JavaScript testing framework.
-5. Mocha - A JavaScript testing framework for Node.js applications.
-
-### APIs 
-_Examples of APIs used_
-1. Google Maps API - Provides access to Google Maps data and functionality.
-2. Twitter API - Allows developers to access Twitter data and functionality.
-3. Facebook Graph API - Enables developers to access Facebook data and functionality.
-4. YouTube Data API - Provides access to YouTube data and functionality.
-5. OpenWeatherMap API - Provides access to weather data and forecasts.
-6. Stripe API - Enables developers to accept and manage online payments.
-7. GitHub API - Allows developers to access GitHub data and functionality.
-8. Amazon Web Services (AWS) API - Provides access to AWS cloud services and functionality.
-9. Twilio API - Enables developers to build SMS and voice applications.
-10. Slack API - Allows developers to access Slack data and functionality.
+1. Vue.js - A progressive JavaScript framework for building user interfaces.
 
 ## Getting Started
 ### Prerequisites
-_Examples of prerequisites_
 * npm
   ```sh
   npm install npm@latest -g
@@ -141,18 +94,6 @@ Feel free to contact and connect!
 || Name | Main Role | Github | LinkedIn |
 |-----------| ----------- | ----------- | ----------- | ----------- |
 |<img src="https://avatars.githubusercontent.com/u/68149788?v=4" width="100"></img>|Tan Zuyi Joey|Project Manager|[![jeezusplays](https://img.shields.io/badge/GitHub-181717.svg?style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/jeezusplays)|[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2.svg?style=for-the-badge&logo=LinkedIn&logoColor=white)](https://linkedin.com/in/joey-tan-zuyi)|
-
-## Acknowledgements
-_Use this space to list resources you find helpful and would like to give credit to._
-
-Examples:
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [Font Awesome](https://fontawesome.com)
-* [Github Profile Badges](https://home.aveek.io/GitHub-Profile-Badges/)
 
 
 [forks-shield]: https://img.shields.io/github/forks/jeezusplays/aws-bank-system.svg?style=for-the-badge
