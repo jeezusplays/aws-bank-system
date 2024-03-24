@@ -65,7 +65,7 @@ Digifin is a cloud-based digital bank that has recently been granted an online b
     ```
 4. Open the project in your browser.
     ```sh
-    open http://localhost:8000
+    open http://localhost:8080
     ```
 5. Compiles and minifies for production
     ```sh
