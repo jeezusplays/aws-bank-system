@@ -55,17 +55,25 @@ Digifin is a cloud-based digital bank that has recently been granted an online b
     ```sh
     cd aws-bank-system
     ```
-3. Install NPM packages (if applicable)
+3. Install packages (if applicable)
    ```sh
-   npm install
+   yarn install
    ```
-3. Start the development server.
+3. Compiles and hot-reloads for development
     ```sh
-    npm start
+    yarn serve
     ```
 4. Open the project in your browser.
     ```sh
-    open http://localhost:3000
+    open http://localhost:8000
+    ```
+5. Compiles and minifies for production
+    ```sh
+    yarn build
+    ```
+6. Lints and fixes files
+    ```sh
+    yarn lint
     ```
 
 ## Usage
