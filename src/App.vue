@@ -22,9 +22,6 @@
       color="ingido"
       style="border-top-left-radius:60px 50px;border-top-right-radius:60px 50px;"
     >
-      <v-btn to="dashboard">
-        <v-icon x-large>mdi-view-dashboard</v-icon>
-      </v-btn>
       <v-btn to="finance_list_view">
         <v-icon x-large>mdi-currency-ngn</v-icon>
       </v-btn>
