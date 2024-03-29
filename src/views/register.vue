@@ -43,8 +43,6 @@
                         class="pa-0 mb-5"></v-text-field>
                       <v-text-field v-model.trim="new_user.first_name" solo dense label="First Name"
                         class="pa-0 mb-5"></v-text-field>
-                      <v-text-field v-model.trim="new_user.middle_name" solo dense label="Middle Name"
-                        class="pa-0 mb-5"></v-text-field>
                       <v-btn class="white indigo--text mb-12" @click="e1 = 1" icon fab>
                         <v-icon large>mdi-chevron-left</v-icon>
                       </v-btn>
@@ -56,44 +54,6 @@
                 </v-container>
               </v-stepper-content>
               <v-stepper-content step="3">
-                <v-avatar size="150" color="indigo" class="mb-10 elevation-1">
-                  <v-icon size="80" color="white">mdi-phone</v-icon>
-                </v-avatar>
-                <v-container grid-list-xs>
-                  <v-row no-gutters class="justify-space-around">
-                    <v-col cols="10" class="py-1 px-0 text-center mr-1">
-                      <v-text-field v-model.trim="new_user.mobile" solo dense type="number" label="Mobile Number"
-                        class="pa-0 mb-5"></v-text-field>
-                      <v-btn class="white indigo--text mb-12" @click="e1 = 2" icon fab>
-                        <v-icon large>mdi-chevron-left</v-icon>
-                      </v-btn>
-                      <v-btn class="white indigo--text mb-12" @click="e1 = 4" icon fab>
-                        <v-icon large>mdi-chevron-right</v-icon>
-                      </v-btn>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-stepper-content>
-              <v-stepper-content step="4">
-                <v-avatar size="150" color="indigo" class="mb-10 elevation-1">
-                  <v-icon size="80" color="white">mdi-gender-male-female</v-icon>
-                </v-avatar>
-                <v-container grid-list-xs>
-                  <v-row no-gutters class="justify-space-around">
-                    <v-col cols="10" class="py-1 px-0 text-center">
-                      <v-select v-model.trim="new_user.gender" dense solo :items="gender_items" name="user_gender"
-                        label="Gender"></v-select>
-                      <v-btn class="white indigo--text mb-12" @click="e1 = 3" icon fab>
-                        <v-icon large>mdi-chevron-left</v-icon>
-                      </v-btn>
-                      <v-btn class="white indigo--text mb-12" @click="e1 = 5" icon fab>
-                        <v-icon large>mdi-chevron-right</v-icon>
-                      </v-btn>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-stepper-content>
-              <v-stepper-content step="5">
                 <v-avatar size="150" color="indigo" class="mb-10 elevation-1">
                   <v-icon size="80" class="white--text" dark>mdi-lock</v-icon>
                 </v-avatar>
@@ -107,7 +67,8 @@
                       <v-btn @click="register()" class="white indigo--text mx-1" icon fab>
                         <v-icon large>mdi-key</v-icon>
                       </v-btn>
-                      <v-btn class="white indigo--text mb-12" @click="e1 = 4" icon fab>
+                      <br>
+                      <v-btn class="white indigo--text mb-12" @click="e1 = 2" icon fab>
                         <v-icon large>mdi-chevron-left</v-icon>
                       </v-btn>
                     </v-col>
@@ -135,7 +96,6 @@ export default {
         message: ""
       },
       re_pin: "",
-      gender_items: ["Male", "Female"],
       new_user: {
         acct_no: "",
         first_name: "",
