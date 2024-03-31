@@ -47,5 +47,13 @@ def create_transactions():
 
     return response.json()
 
+
+# Test route
+@trycatch
+@app.route('/test/', methods=['GET'])
+def hello_world():
+    return 'Hello, World!'
+
+
 if __name__ == '__main__':
-    app.run(port=int(PORT), debug=True)
+    app.run(host="0.0.0.0",port=int(PORT), debug=True)
