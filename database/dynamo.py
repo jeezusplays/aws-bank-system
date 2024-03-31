@@ -2,6 +2,7 @@ import os
 import boto3
 import logging
 from time import sleep
+from data import *
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -155,16 +156,12 @@ def insert_mock_data():
     user_items = [
         {
             'UserID': {'S': '1'},
-            'creationDate': {'S': '1/1/2024'},
             'email': {'S': 'samuelchung95@gmail.com'},
-            'name': {'S': 'Samuel Chung'},
-            'password': {'S': 'password'}
+            'name': {'S': 'Samuel Chung'}
         },{
             'UserID': {'S': '2'},
-            'creationDate': {'S': '1/1/2024'},
             'email': {'S': 'test@gmail.com'},
-            'name': {'S': 'Test User'},
-            'password': {'S': 'password'}
+            'name': {'S': 'Test User'}
         }
     ]
 
@@ -193,7 +190,8 @@ def insert_mock_data():
             'internalTransaction': {'BOOL': False},
             'name': {'S': 'Initial Deposit'},
             'timestamp': {'S': '1/1/2024 12:00:00'},
-            'type': {'S': 'deposit'}
+            'type': {'S': 'deposit'},
+            'detectedFraud': {'BOOL': False},
         },{
             'transactionID': {'S': '2'},
             'accountID': {'S': '1'},
@@ -202,7 +200,8 @@ def insert_mock_data():
             'internalTransaction': {'BOOL': False},
             'name': {'S': 'Withdrawal'},
             'timestamp': {'S': '2024-01-01 12:10:00'},
-            'type': {'S': 'withdrawal'}
+            'type': {'S': 'withdrawal'},
+            'detectedFraud': {'BOOL': False},
         },{
             'transactionID': {'S': '3'},
             'accountID': {'S': '1'},
@@ -211,7 +210,8 @@ def insert_mock_data():
             'internalTransaction': {'BOOL': True},
             'name': {'S': 'Transfer Out'},
             'timestamp': {'S': '2024-01-03 12:00:00'},
-            'type': {'S': 'transfer'}
+            'type': {'S': 'transfer'},
+            'detectedFraud': {'BOOL': False},
         },{
             'transactionID': {'S': '4'},
             'accountID': {'S': '2'},
@@ -220,7 +220,8 @@ def insert_mock_data():
             'internalTransaction': {'BOOL': False},
             'name': {'S': 'Initial Deposit'},
             'timestamp': {'S': '2024-01-01 12:00:00'},
-            'type': {'S': 'deposit'}
+            'type': {'S': 'deposit'},
+            'detectedFraud': {'BOOL': False},
         },{
             'transactionID': {'S': '5'},
             'accountID': {'S': '2'},
@@ -229,7 +230,8 @@ def insert_mock_data():
             'internalTransaction': {'BOOL': True},
             'name': {'S': 'Transfer In'},
             'timestamp': {'S': '2024-01-03 12:00:00'},
-            'type': {'S': 'transfer'}
+            'type': {'S': 'transfer'},
+            'detectedFraud': {'BOOL': False},
         }
     ]
 
@@ -244,7 +246,6 @@ def insert_mock_data():
     for item in transaction_items:
         response = dynamodb.put_item(TableName='Transactions', Item=item)
         logging.info(f"Inserted item: {response}")
-
 
 
 

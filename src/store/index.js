@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import router from "../router/index";
+import { Auth } from 'aws-amplify';
+
 // import VuexPersistence from "vuex-persist";
 
 Vue.use(Vuex);
@@ -41,27 +43,38 @@ export default new Vuex.Store({
       store.commit("set_user_bank_details", val);
     },
     fetch_user_profile({ commit }) {
-      var val = localStorage.getItem("user_profile");
-      if (!val) {
-        commit("set_user_profile", {});
-      }
-      commit("set_user_profile", JSON.parse(val));
+      Auth.currentUserInfo()
+        .then((user) => {
+          commit("set_user_profile", user);
+        })
+        .catch((error) => {
+          console.log(error);
+          // go to login page
+          router.push("/auth");
+        });
     },
     fetch_user_bank_details({ commit }) {
-      var val = localStorage.getItem("user_bank_details");
-      if (!val) {
-        commit("set_user_bank_details", {});
-      }
-      commit("set_user_bank_details", JSON.parse(val));
+      axios.get("/api/user/bank-details")
+        .then((response) => {
+          commit("set_user_bank_details", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+          // go to login page
+          router.push("/auth");
+        });
     },
     fetch_current_user({ commit }) {
-      var val = localStorage.getItem("logged_acct_no");
-
-      if (!localStorage.getItem("login") || !val) {
-        commit("set_user_bank_details", null);
-      }
-      commit("set_user_bank_details", JSON.parse(val));
-    }
+      Auth.currentAuthenticatedUser()
+        .then((user) => {
+          commit("set_current_user", user);
+        })
+        .catch((error) => {
+          console.log(error);
+          // go to login page
+          router.push("/auth");
+        });
+    },
   },
   modules: {}
 });
