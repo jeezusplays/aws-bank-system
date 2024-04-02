@@ -10,25 +10,7 @@
         <v-icon>mdi-account-off</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-bottom-navigation
-      v-if="!authPage"
-      v-model="bottomNav"
-      shift
-      app
-      grow
-      dark
-      background-color="indigo"
-      class="pt-2"
-      color="ingido"
-      style="border-top-left-radius:60px 50px;border-top-right-radius:60px 50px;"
-    >
-      <v-btn to="finance_list_view">
-        <v-icon x-large>mdi-currency-ngn</v-icon>
-      </v-btn>
-      <v-btn to="account_view">
-        <v-icon x-large>mdi-account</v-icon>
-      </v-btn>
-    </v-bottom-navigation>
+
     <v-overlay :value="loader" z-index="99999">
       <v-progress-circular width="15" size="120" indeterminate color="indigo"></v-progress-circular>
     </v-overlay>

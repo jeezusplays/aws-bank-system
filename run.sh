@@ -1,0 +1,1 @@
+docker run -d -p 8080:8080 -e CLIENT_ID=os8nip21cc8jigtltlpdnhs06 -e REDIRECT_URL=https://localhost:8080/dashboard -e AWS_LOGIN_DOMAIN=digifin.auth.ap-southeast-1.amazoncognito.com samuelchung/cme-vue

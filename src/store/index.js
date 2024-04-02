@@ -1,7 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import {LOGIN_URL} from "../utils/var";
 import router from "../router/index";
-import { Auth } from 'aws-amplify';
+import { getCurrentUser } from 'aws-amplify/auth';
+import axios from 'axios'; // Import the axios package
 
 // import VuexPersistence from "vuex-persist";
 
@@ -43,14 +45,17 @@ export default new Vuex.Store({
       store.commit("set_user_bank_details", val);
     },
     fetch_user_profile({ commit }) {
-      Auth.currentUserInfo()
-        .then((user) => {
-          commit("set_user_profile", user);
+      getCurrentUser ()
+        .then((username, userId, signInDetails) => {
+          console.log("userId: ", userId);
+          console.log("signInDetails: ", signInDetails);
+          console.log("username: ", username);
+          commit("set_user_profile", userId);
         })
         .catch((error) => {
           console.log(error);
           // go to login page
-          router.push("/auth");
+          window.location.href = LOGIN_URL;
         });
     },
     fetch_user_bank_details({ commit }) {
@@ -65,14 +70,17 @@ export default new Vuex.Store({
         });
     },
     fetch_current_user({ commit }) {
-      Auth.currentAuthenticatedUser()
-        .then((user) => {
-          commit("set_current_user", user);
+      getCurrentUser ()
+        .then((username, userId, signInDetails) => {
+          console.log("userId: ", userId);
+          console.log("signInDetails: ", signInDetails);
+          console.log("username: ", username);
+          commit("set_user_profile", userId);
         })
         .catch((error) => {
           console.log(error);
           // go to login page
-          router.push("/auth");
+          window.location.href = LOGIN_URL;
         });
     },
   },

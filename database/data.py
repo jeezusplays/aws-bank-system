@@ -24,7 +24,7 @@ class Account:
     def to_dict(self) -> Dict[str, Dict[str, Union[str, int, bool]]]:
         return {
             'AccountID': {'S': self.account_id},
-            'userID': {'S': self.user_id},
+            'UserID': {'S': self.user_id},
             'balance': {'N': str(self.balance)},
             'creationDate': {'S': self.creation_date},
             'name': {'S': self.name}
@@ -44,8 +44,8 @@ class Transaction:
 
     def to_dict(self) -> Dict[str, Dict[str, Union[str, int, bool]]]:
         return {
-            'transactionID': {'S': self.transaction_id},
-            'accountID': {'S': self.account_id},
+            'TransactionID': {'S': self.transaction_id},
+            'AccountID': {'S': self.account_id},
             'amount': {'N': str(self.amount)},
             'description': {'S': self.description},
             'internalTransaction': {'BOOL': self.internal_transaction},

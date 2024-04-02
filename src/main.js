@@ -6,6 +6,12 @@ import store from "./store/index";
 import vuetify from "./plugins/vuetify";
 import "roboto-fontface/css/roboto/roboto-fontface.css";
 import "@mdi/font/css/materialdesignicons.css";
+import '@aws-amplify/ui-components';
+import {
+  applyPolyfills,
+  defineCustomElements
+} from '@aws-amplify/ui-components/loader';
+
 
 Vue.config.productionTip = false;
 
@@ -19,3 +25,9 @@ setTimeout(
     }).$mount("#app"),
   7000
 );
+
+Vue.config.ignoredElements = [/amplify-\w*/];
+
+applyPolyfills().then(() => {
+  defineCustomElements(window);
+});

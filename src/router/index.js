@@ -9,7 +9,7 @@ let router = new Router({
   routes: [
     {
       path: "/",
-      component: () => import("../views/finance_list_view.vue"),
+      component: () => import("../views/cognito.vue"),
       prop: true,
       meta: {
         requiresAuth: true

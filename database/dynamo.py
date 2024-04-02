@@ -1,6 +1,7 @@
 import os
 import boto3
 import logging
+from datetime import datetime
 from time import sleep
 from data import *
 from dotenv import load_dotenv
@@ -145,7 +146,6 @@ def reset_database():
 
     sleep(20)
     
-
 # Insert mock data into the database
 @trycatch
 def insert_mock_data():
@@ -154,85 +154,21 @@ def insert_mock_data():
     logging.info("Inserting mock data into the database...")
 
     user_items = [
-        {
-            'UserID': {'S': '1'},
-            'email': {'S': 'samuelchung95@gmail.com'},
-            'name': {'S': 'Samuel Chung'}
-        },{
-            'UserID': {'S': '2'},
-            'email': {'S': 'test@gmail.com'},
-            'name': {'S': 'Test User'}
-        }
+        User(user_id='1', email='samuelchung95@gmail.com', name='Samuel Chung').to_dict(),
+        User(user_id='2', email='test@gmail.com', name='Test User').to_dict()
     ]
 
-    account_items = [ 
-        {
-            'AccountID': {'S': '1'},
-            'userID': {'S': '1'},
-            'balance': {'N': '2000'},
-            'creationDate': {'S': '1/1/2024'},
-            'name': {'S': 'Savings Account'}
-        },{
-            'AccountID': {'S': '2'},
-            'userID': {'S': '2'},
-            'balance': {'N': '125'},
-            'creationDate': {'S': '1/1/2024'},
-            'name': {'S': 'Savings Account'}
-        }
+    account_items = [
+        Account(account_id='1', user_id='1', balance=2000, creation_date='1/1/2024', name='Savings Account').to_dict(),
+        Account(account_id='2', user_id='2', balance=125, creation_date='1/1/2024', name='Savings Account').to_dict()
     ]
 
-    transaction_items = [ 
-        {
-            'transactionID': {'S': '1'},
-            'accountID': {'S': '1'},
-            'amount': {'N': '3000'},
-            'description': {'S': 'Initial deposit on account creation'},
-            'internalTransaction': {'BOOL': False},
-            'name': {'S': 'Initial Deposit'},
-            'timestamp': {'S': '1/1/2024 12:00:00'},
-            'type': {'S': 'deposit'},
-            'detectedFraud': {'BOOL': False},
-        },{
-            'transactionID': {'S': '2'},
-            'accountID': {'S': '1'},
-            'amount': {'N': '-975'},
-            'description': {'S': 'Withdrawal at bukit panjang atm'},
-            'internalTransaction': {'BOOL': False},
-            'name': {'S': 'Withdrawal'},
-            'timestamp': {'S': '2024-01-01 12:10:00'},
-            'type': {'S': 'withdrawal'},
-            'detectedFraud': {'BOOL': False},
-        },{
-            'transactionID': {'S': '3'},
-            'accountID': {'S': '1'},
-            'amount': {'N': '-25'},
-            'description': {'S': 'Transfer to account 2 via mobile app'},
-            'internalTransaction': {'BOOL': True},
-            'name': {'S': 'Transfer Out'},
-            'timestamp': {'S': '2024-01-03 12:00:00'},
-            'type': {'S': 'transfer'},
-            'detectedFraud': {'BOOL': False},
-        },{
-            'transactionID': {'S': '4'},
-            'accountID': {'S': '2'},
-            'amount': {'N': '100'},
-            'description': {'S': 'Initial deposit on account creation'},
-            'internalTransaction': {'BOOL': False},
-            'name': {'S': 'Initial Deposit'},
-            'timestamp': {'S': '2024-01-01 12:00:00'},
-            'type': {'S': 'deposit'},
-            'detectedFraud': {'BOOL': False},
-        },{
-            'transactionID': {'S': '5'},
-            'accountID': {'S': '2'},
-            'amount': {'N': '25'},
-            'description': {'S': 'Transfer from account 1 via mobile app'},
-            'internalTransaction': {'BOOL': True},
-            'name': {'S': 'Transfer In'},
-            'timestamp': {'S': '2024-01-03 12:00:00'},
-            'type': {'S': 'transfer'},
-            'detectedFraud': {'BOOL': False},
-        }
+    transaction_items = [
+        Transaction(transaction_id='1', account_id='1', amount=3000, description='Initial deposit on account creation', internal_transaction=False, name='Initial Deposit', timestamp='1/1/2024 12:00:00', transaction_type='deposit', detected_fraud=False).to_dict(),
+        Transaction(transaction_id='2', account_id='1', amount=-975, description='Withdrawal at bukit panjang atm', internal_transaction=False, name='Withdrawal', timestamp='2024-01-01 12:10:00', transaction_type='withdrawal', detected_fraud=False).to_dict(),
+        Transaction(transaction_id='3', account_id='1', amount=-25, description='Transfer to account 2 via mobile app', internal_transaction=True, name='Transfer Out', timestamp='2024-01-03 12:00:00', transaction_type='transfer', detected_fraud=False).to_dict(),
+        Transaction(transaction_id='4', account_id='2', amount=100, description='Initial deposit on account creation', internal_transaction=False, name='Initial Deposit', timestamp='2024-01-01 12:00:00', transaction_type='deposit', detected_fraud=False).to_dict(),
+        Transaction(transaction_id='5', account_id='2', amount=25, description='Transfer from account 1 via mobile app', internal_transaction=True, name='Transfer In', timestamp='2024-01-03 12:00:00', transaction_type='transfer', detected_fraud=False).to_dict()
     ]
 
     for item in user_items:
@@ -246,6 +182,78 @@ def insert_mock_data():
     for item in transaction_items:
         response = dynamodb.put_item(TableName='Transactions', Item=item)
         logging.info(f"Inserted item: {response}")
+
+# Get users by user ID and parse the response into a User object
+@trycatch
+def get_user_by_id(user_id: str):
+    response = dynamodb.get_item(TableName='Users', Key={'UserID': {'S': user_id}})
+    item = response['Item']
+    user = User(user_id=item['UserID']['S'], email=item['email']['S'], name=item['name']['S'])
+    return user
+
+# Get accounts by user ID and parse the response into a list of Account objects
+@trycatch
+def get_accounts_by_user_id(user_id: str) -> List[Account]:
+    response = dynamodb.query(
+        TableName='Accounts',
+        KeyConditionExpression='UserID = :user_id',
+        ExpressionAttributeValues={
+            ':user_id': {'S': user_id}
+        }
+    )
+    items = response['Items']
+    accounts = []
+    for item in items:
+        account = Account(account_id=item['AccountID']['S'], user_id=item['userID']['S'], balance=float(item['balance']['N']), creation_date=item['creationDate']['S'], name=item['name']['S'])
+        accounts.append(account)
+    return accounts
+
+# Get transactions by account ID and parse the response into a list of Transaction objects
+@trycatch
+def get_transactions_by_account_id(account_id: str) -> List[Transaction]:
+    response = dynamodb.query(
+        TableName='Transactions',
+        KeyConditionExpression='AccountID = :account_id',
+        ExpressionAttributeValues={
+            ':account_id': {'S': account_id}
+        }
+    )
+    items = response['Items']
+    transactions = []
+    for item in items:
+        transaction = Transaction(transaction_id=item['transactionID']['S'], account_id=item['accountID']['S'], amount=float(item['amount']['N']), description=item['description']['S'], internal_transaction=item['internalTransaction']['BOOL'], name=item['name']['S'], timestamp=item['timestamp']['S'], transaction_type=item['type']['S'], detected_fraud=item['detectedFraud']['BOOL'])
+        transactions.append(transaction)
+    return transactions
+
+# Create transaction and insert into the database
+@trycatch
+def create_transaction(transaction: Transaction):
+    item = transaction.to_dict()
+    response = dynamodb.put_item(TableName='Transactions', Item=item)
+    logging.info(f"Inserted item: {response}")
+
+# Make a transfer between two accounts
+@trycatch
+def make_transfer(from_account_id: str, to_account_id: str, amount: float):
+    # Get the account details
+    from_account = get_accounts_by_user_id(from_account_id)[0]
+    to_account = get_accounts_by_user_id(to_account_id)
+
+    # Check if the from account has sufficient balance
+    if from_account.balance < amount:
+        return "Insufficient balance"
+    
+    time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    # Create transactions for the transfer
+    from_transaction = Transaction(transaction_id='1', account_id=from_account_id, amount=-amount, description='Transfer to account ' + to_account_id, internal_transaction=True, name='Transfer Out', timestamp=time, transaction_type='transfer', detected_fraud=False)
+    to_transaction = Transaction(transaction_id='2', account_id=to_account_id, amount=amount, description='Transfer from account ' + from_account_id, internal_transaction=True, name='Transfer In', timestamp=time, transaction_type='transfer', detected_fraud=False)
+
+    # Insert transactions into the database
+    create_transaction(from_transaction)
+    create_transaction(to_transaction)
+
+    return "Transfer successful"
 
 
 

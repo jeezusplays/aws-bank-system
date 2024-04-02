@@ -29,6 +29,13 @@
 </template>
 <script>
 import {mapState} from 'vuex';
+import { config } from '../utils/amplify.js'
+import { Amplify } from 'aws-amplify';
+Amplify.configure(config);
+
+import { getCurrentUser } from 'aws-amplify/auth';
+import { LOGIN_URL } from '../utils/var.js';
+
 export default {
   data() {
     return {
@@ -64,9 +71,19 @@ export default {
     this.load_data()
   },
   methods: {
-    load_data(){
-      this.$store.dispatch('fetch_user_profile')
-      return
+    async load_data(){
+      // get user from amplify, if not available, redirect to specific url
+      getCurrentUser ()
+        .then((username, userId, signInDetails) => {
+          console.log("userId: ", userId);
+          console.log("signInDetails: ", signInDetails);
+          console.log("username: ", username);
+        })
+        .catch((error) => {
+          console.log(error);
+          // go to login page
+          window.location.href = LOGIN_URL;
+        });
     },
   },
   computed: {
